@@ -1,0 +1,33 @@
+h1. Modal Overlays in JavaScript
+
+h3. USAGE
+
+Just call Overlay.create, passing it a "builder" function that
+returns the element to put on top of the overlay.
+
+  Overlay.create(function() {
+    return new Element('h1').update("Hello, World!")
+  });
+
+Your builder function is passed a function that will cancel the
+overlay. You can use it like so:
+
+  Overlay.create(function(cancel) {
+    var element = new Element('div');
+    var content = new Element('p').update("Something good.");
+    var finish  = new Element('a', { href: '#' }).update("Cancel!");
+    finish.observe('click', cancel);
+    element.insert(content);
+    element.insert(finish);
+    return element;
+  });
+  
+Clicking the "finish" link built above will fade the overlay and
+allow the user to continue with the task at hand.
+
+h3. REQUIREMENTS
+
+* prototype.js
+* effects.js (from script.aculo.us)
+
+(c) Copyright 2008 Pat Nakajima. All Rights Reserved. 
