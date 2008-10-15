@@ -1,10 +1,8 @@
-(function() {
-  document.observe('keypress', function(event) {
-    if (event.keyCode == Event.KEY_ESC) {
-      document.fire('escape:pressed');
-    }
-  });
-})();
+document.observe('keypress', function(event) {
+  if (event.keyCode == Event.KEY_ESC) {
+    document.fire('escape:pressed');
+  }
+});
 
 document.observe('dom:loaded', function() {
   window.Overlay = Class.create({
