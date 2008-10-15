@@ -8,10 +8,15 @@ document.observe('dom:loaded', function() {
   window.Overlay = Class.create({
     initialize: function(fn) {
       this.fn = fn;
-      this.cancel = this.cancel.bind(this);
+      this.bindify();
       this.overlay = new Element('div').setOpacity(0.3);
       this.setupElements();
       this.setupBehaviors();
+    },
+    
+    bindify: function() {
+      this.cancel = this.cancel.bind(this);
+      this.fixPosition = this.fixPosition.bind(this);
     },
 
     cancel: function(event) {
@@ -56,8 +61,8 @@ document.observe('dom:loaded', function() {
     },
 
     setupBehaviors: function() {
-      Event.observe(window, 'scroll', this.fixPosition());
-      Event.observe(window, 'resize', this.fixPosition());
+      Event.observe(window, 'scroll', this.fixPosition);
+      Event.observe(window, 'resize', this.fixPosition);
       document.observe('escape:pressed', this.cancel);
     }
   });
