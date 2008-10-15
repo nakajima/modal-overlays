@@ -25,6 +25,20 @@ overlay. You can use it like so:
 Clicking the "finish" link built above will fade the overlay and
 allow the user to continue with the task at hand.
 
+You also have access to the background overlay element. This snippet
+will make the overlay opaque:
+
+  Overlay.create(function(cancel, overlay) {
+    overlay.setOpacity(1); // Make the background DARK!
+    var element = new Element('div');
+    var content = new Element('p').update("Something good.");
+    var finish  = new Element('a', { href: '#' }).update("Cancel!");
+    finish.observe('click', cancel);
+    element.insert(content);
+    element.insert(finish);
+    return element;
+  });
+
 h3. REQUIREMENTS
 
 * prototype.js

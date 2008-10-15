@@ -18,7 +18,8 @@
     
     <script type="text/javascript" charset="utf-8">
       document.observe('dom:loaded', function(event) {
-        var newOne = function(cancel) {
+        var newOne = function(cancel, overlay) {
+          overlay.setOpacity(1);
           var container = $('container');
           container.show();
           container.down('a').observe('click', cancel);
