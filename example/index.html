@@ -19,21 +19,20 @@
     <script type="text/javascript" charset="utf-8">
       document.observe('dom:loaded', function(event) {
         var newOne = function(cancel, overlay) {
-          overlay.setOpacity(1);
           var container = $('container');
           container.show();
           container.down('a').observe('click', cancel);
           return container;
         }
         
-        $$('a').invoke('observe', 'click', function(event) { event.stop(); Overlay.create(newOne); });
+        $('do-it').observe('click', function(event) { event.stop(); Overlay.create(newOne); });
       });
     </script>
   </head>
   <body>
     <h1>Hello.</h1>
     
-    <p><a href="#">CLICK ME!!!</a></p>
+    <p><a href="#" id="do-it">CLICK ME!!!</a></p>
     
     <div id="container" class="test" style="display:none;">
       <h1>AN AWESOME!</h1>
